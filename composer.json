@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=7.4",
-        "mcmatters/ticl": "^0.4.0"
+        "mcmatters/ticl": "*"
     },
     "autoload": {
         "psr-4": {
