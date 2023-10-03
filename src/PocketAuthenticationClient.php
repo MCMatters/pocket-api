@@ -8,21 +8,10 @@ use McMatters\Ticl\Client;
 
 use const null;
 
-/**
- * Class PocketAuthenticationClient
- *
- * @package McMatters\PocketApi
- */
 class PocketAuthenticationClient
 {
-    /**
-     * @var \McMatters\Ticl\Client
-     */
     protected Client $httpClient;
 
-    /**
-     * @return void
-     */
     public function __construct(string $consumerKey)
     {
         $this->httpClient = new Client([
@@ -37,13 +26,7 @@ class PocketAuthenticationClient
         ]);
     }
 
-    /**
-     * @param string $redirectUri
-     * @param string|null $state
-     *
-     * @return array
-     */
-    public function request(string $redirectUri, string $state = null): array
+    public function request(string $redirectUri, ?string $state = null): array
     {
         return $this->httpClient
             ->withJson(['redirect_uri' => $redirectUri, 'state' => $state])
@@ -51,22 +34,11 @@ class PocketAuthenticationClient
             ->json();
     }
 
-    /**
-     * @param string $code
-     * @param string $redirectUri
-     *
-     * @return string
-     */
     public function getAuthorizeUrl(string $code, string $redirectUri): string
     {
         return "https://getpocket.com/auth/authorize?request_token={$code}&redirect_uri={$redirectUri}";
     }
 
-    /**
-     * @param string $code
-     *
-     * @return array
-     */
     public function authorize(string $code): array
     {
         return $this->httpClient
